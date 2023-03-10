@@ -4,13 +4,11 @@ import { z } from "zod";
 
 const inter = Inter({ subsets: ["latin"] });
 
-type User = {
-  id: number;
-};
-
 const userSchema = z.object({
-  id: z.number(),
+  id: z.string(),
 });
+
+type User = z.infer<typeof userSchema>;
 
 async function getData(): Promise<User> {
   const res = await fetch("http://localhost:3000/api/user", {
